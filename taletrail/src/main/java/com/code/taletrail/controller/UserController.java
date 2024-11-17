@@ -1,5 +1,6 @@
 package com.code.taletrail.controller;
 
+import com.code.taletrail.exception.ResourceNotFoundException;
 import com.code.taletrail.payload.UserDto;
 import com.code.taletrail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,13 @@ public class UserController {
 
     //GET
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDto> getUser(@PathVariable Integer userId){
-        UserDto user = userService.getUserById(userId);
+    public ResponseEntity<?> getUser(@PathVariable Integer userId){
+        UserDto user = null;
+        try {
+            user = userService.getUserById(userId);
+        } catch (ResourceNotFoundException e) {
+            return new ResponseEntity<>(Map.of("message", "User Not Found"), HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -43,15 +49,26 @@ public class UserController {
 
     //PUT
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable Integer userId){
-        UserDto updatedUserDto = userService.updateUser(userDto, userId);
+    public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @PathVariable Integer userId){
+        UserDto updatedUserDto = null;
+        try{
+            updatedUserDto = userService.updateUser(userDto, userId);
+        }
+        catch (ResourceNotFoundException e) {
+            return new ResponseEntity<>(Map.of("message", "User Not Found"), HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
     }
 
     //DELETE
     @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer userId){
-        userService.deleteUser(userId);
+        try{
+            userService.deleteUser(userId);
+        }
+        catch (ResourceNotFoundException e) {
+            return new ResponseEntity<>(Map.of("message", "User Not Found"), HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(Map.of("message", "User Deleted Successfully"), HttpStatus.OK);
     }
 
