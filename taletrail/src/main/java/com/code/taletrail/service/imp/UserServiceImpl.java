@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserById(Integer userId) {
         User user = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User", " Id ", userId));
-
         return userToDto(user);
     }
 
@@ -52,7 +51,6 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAllUsers() {
         List<User> users = userRepo.findAll();
         List<UserDto> userDtos = users.stream().map(user -> userToDto(user)).collect(Collectors.toList());
-
         return userDtos;
     }
 
