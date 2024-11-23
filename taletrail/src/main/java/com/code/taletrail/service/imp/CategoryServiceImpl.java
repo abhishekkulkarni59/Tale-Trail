@@ -2,16 +2,17 @@ package com.code.taletrail.service.imp;
 
 import com.code.taletrail.exception.ResourceNotFoundException;
 import com.code.taletrail.model.Category;
-import com.code.taletrail.model.User;
 import com.code.taletrail.payload.CategoryDto;
 import com.code.taletrail.repository.CategoryRepo;
 import com.code.taletrail.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
