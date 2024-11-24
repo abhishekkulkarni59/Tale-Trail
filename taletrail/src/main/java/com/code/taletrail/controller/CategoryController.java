@@ -25,13 +25,8 @@ public class CategoryController {
 
     //GET
     @GetMapping("/{categoryId}")
-    public ResponseEntity<?> getCategory(@PathVariable Integer categoryId){
-        CategoryDto category = null;
-        try {
-            category = categoryService.getCategoryById(categoryId);
-        } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(Map.of("message", "Category Not Found"), HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable Integer categoryId){
+        CategoryDto category = categoryService.getCategoryById(categoryId);
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
@@ -50,26 +45,15 @@ public class CategoryController {
 
     //PUT
     @PutMapping("/{categoryId}")
-    public ResponseEntity<?> updateCategory(@Valid @RequestBody CategoryDto CategoryDto, @PathVariable Integer categoryId){
-        CategoryDto updatedCategoryDto = null;
-        try{
-            updatedCategoryDto = categoryService.updateCategory(CategoryDto, categoryId);
-        }
-        catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(Map.of("message", "Category Not Found"), HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto CategoryDto, @PathVariable Integer categoryId){
+        CategoryDto updatedCategoryDto = updatedCategoryDto = categoryService.updateCategory(CategoryDto, categoryId);
         return new ResponseEntity<>(updatedCategoryDto, HttpStatus.OK);
     }
 
     //DELETE
     @DeleteMapping("/{categoryId}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Integer categoryId){
-        try{
-            categoryService.deleteCategory(categoryId);
-        }
-        catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(Map.of("message", "Category Not Found"), HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Map<String,String>> deleteCategory(@PathVariable Integer categoryId){
+        categoryService.deleteCategory(categoryId);
         return new ResponseEntity<>(Map.of("message", "Category Deleted Successfully"), HttpStatus.OK);
     }
 
