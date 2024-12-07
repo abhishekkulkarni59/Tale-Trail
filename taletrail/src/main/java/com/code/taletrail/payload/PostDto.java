@@ -1,7 +1,5 @@
 package com.code.taletrail.payload;
 
-import com.code.taletrail.model.Category;
-import com.code.taletrail.model.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
