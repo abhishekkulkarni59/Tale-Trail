@@ -1,5 +1,6 @@
 package com.code.taletrail.controller;
 
+import com.code.taletrail.config.AppConstants;
 import com.code.taletrail.payload.PostDto;
 import com.code.taletrail.payload.PostResponse;
 import com.code.taletrail.service.PostService;
@@ -28,10 +29,10 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<PostResponse> getAllPosts(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-                                                    @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
-                                                    @RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
-                                                    @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir) {
+    public ResponseEntity<PostResponse> getAllPosts(@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+                                                    @RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+                                                    @RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
+                                                    @RequestParam(value = "sortDir", defaultValue = AppConstants.SORT_DIR, required = false) String sortDir) {
         PostResponse postResponse = postService.getAllPosts(pageNumber, pageSize, sortBy, sortDir);
         return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
