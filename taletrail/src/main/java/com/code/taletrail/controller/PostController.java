@@ -37,8 +37,8 @@ public class PostController {
     //GET
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId) {
-        PostDto post = postService.getPostById(postId);
-        return new ResponseEntity<>(post, HttpStatus.OK);
+        PostDto postDto = postService.getPostById(postId);
+        return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 
     @GetMapping("/")
@@ -58,7 +58,7 @@ public class PostController {
 
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<PostDto>> getPostsByCategory(@PathVariable Integer categoryId) {
-        List<PostDto> posts = postService.getPostsByUser(categoryId);
+        List<PostDto> posts = postService.getPostsByCategory(categoryId);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
