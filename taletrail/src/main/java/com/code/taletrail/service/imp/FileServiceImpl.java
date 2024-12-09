@@ -1,6 +1,7 @@
 package com.code.taletrail.service.imp;
 
 import com.code.taletrail.service.FileService;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+@Service
 public class FileServiceImpl implements FileService {
 
 
