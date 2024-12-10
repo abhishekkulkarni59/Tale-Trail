@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Yukku\",\r\n    \"email\" : \"yukku@gmail.com\",\r\n    \"password\" : \"abc123\",\r\n    \"about\" : \"Yukkuo!\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Abhishek\",\r\n    \"email\" : \"abhishek@gmail.com\",\r\n    \"password\" : \"yalla\",\r\n    \"about\" : \"ABHYAA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,6 +45,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmhpc2hla0BnbWFpbC5jb20iLCJpYXQiOjE3MzM4NTA4NzUsImV4cCI6MTczMzg1MjY3NX0.Kiel2l5aYclSGP4bMSzEGk7lyO0-JL8eXZpZ8Qobpa0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -138,7 +148,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/users/1",
+							"raw": "http://localhost:8080/api/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -147,7 +157,7 @@
 							"path": [
 								"api",
 								"users",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -161,6 +171,16 @@
 				{
 					"name": "Get Category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmhpc2hla0BnbWFpbC5jb20iLCJpYXQiOjE3MzM4NTEzNjAsImV4cCI6MTczMzg1MzE2MH0.Q3bbHidilHbwSg7EN0I6RTDTPGpAqX0MdvV7kvzvfFo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -182,6 +202,16 @@
 				{
 					"name": "Get All Categories",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5dWtrdUBnbWFpbC5jb20iLCJpYXQiOjE3MzM4NDgxNTcsImV4cCI6MTczMzg0OTk1N30.GVR9MBWjTy_3zgLWVFSnQ_Tz5N-UHmWwaNE06-ekuU0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -280,6 +310,16 @@
 				{
 					"name": "Get All Posts",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmhpc2hla0BnbWFpbC5jb20iLCJpYXQiOjE3MzM4NTEzNjAsImV4cCI6MTczMzg1MzE2MH0.Q3bbHidilHbwSg7EN0I6RTDTPGpAqX0MdvV7kvzvfFo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -448,6 +488,72 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Delete Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmhpc2hla0BnbWFpbC5jb20iLCJpYXQiOjE3MzM4NTEzNjAsImV4cCI6MTczMzg1MzE2MH0.Q3bbHidilHbwSg7EN0I6RTDTPGpAqX0MdvV7kvzvfFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"abhishek@gmail.com\",\r\n    \"password\" : \"yalla\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
