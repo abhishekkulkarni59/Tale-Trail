@@ -38,9 +38,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.POST, "/api/users/", "/api/login/").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/users/").hasRole("ADMIN") // Only ADMIN role
-                        .requestMatchers("/api/posts/**").hasRole("USER") // Only USER role
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

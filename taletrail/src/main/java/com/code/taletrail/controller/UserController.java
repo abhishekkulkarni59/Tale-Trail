@@ -35,12 +35,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    //POST
-    @PostMapping("/")
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
-        UserDto createdUserDto = userService.createUser(userDto);
-        return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
-    }
+//    //POST
+//    @PostMapping("/")
+//    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
+//        UserDto createdUserDto = userService.createUser(userDto);
+//        return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
+//    }
 
     //PUT
     @PutMapping("/{userId}")

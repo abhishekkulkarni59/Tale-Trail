@@ -1,8 +1,11 @@
 package com.code.taletrail.service.imp;
 
+import com.code.taletrail.config.AppConstants;
 import com.code.taletrail.exception.ResourceNotFoundException;
+import com.code.taletrail.model.Role;
 import com.code.taletrail.model.User;
 import com.code.taletrail.payload.UserDto;
+import com.code.taletrail.repository.RoleRepo;
 import com.code.taletrail.repository.UserRepo;
 import com.code.taletrail.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -20,6 +23,9 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
+    private RoleRepo roleRepo;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
@@ -29,6 +35,8 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) {
         User user = dtoToUser(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        Role role = roleRepo.findById(AppConstants.USER).get();
+        user.getRoles().add(role);
         User savedUser = userRepo.save(user);
 
         return userToDto(savedUser);
