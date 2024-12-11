@@ -32,8 +32,8 @@ public class CategoryController {
 
     @GetMapping("/")
     public ResponseEntity<List<CategoryDto>> getAllCategorys(){
-        List<CategoryDto> categorys = categoryService.getAllCategories();
-        return new ResponseEntity<>(categorys, HttpStatus.OK);
+        List<CategoryDto> categories = categoryService.getAllCategories();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     //POST
