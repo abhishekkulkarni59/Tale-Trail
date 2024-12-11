@@ -18,8 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.code.taletrail.security.JWTFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
+@EnableWebMvc
 @EnableWebSecurity
 public class SecurityConfig {
 
@@ -28,6 +30,15 @@ public class SecurityConfig {
 
     @Autowired
     private JWTFilter jwtFilter;
+
+    private static final String[] PUBLIC_URLS = {
+            "/api/auth/**",
+            "/v3/api-docs/**",
+            "/v2/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,10 +49,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(PUBLIC_URLS).permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/users/").hasRole("ADMIN") // Only ADMIN role
                         .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
+//                .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
